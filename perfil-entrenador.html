@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokédex - Perfil de entrenador</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/pokeball.svg">
+  <link rel="icon" type="image/png" href="assets/pokeball.png">
+  <!-- favicon.ico vive en la raiz: el navegador lo pide solo, sin <link> -->
+
+  <!-- Hoja de estilos del sitio. Mismo elemento <link> que el favicon;
+       lo que cambia es rel, que dice qué relación tiene el archivo con el documento. -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tokens.css">
+</head>
+
+</body>
+
+  <header>
+    <p>
+      <a class="logo" href="./">
+        <img src="assets/logo-pokedex.svg" alt="Pokédex" width="156" height="40">
+      </a>
+    </p>
+
+    <nav>
+      <ul>
+        <li><a href="./" accesskey="p">Pokédex</a></li>
+        <li><a href="perfil-entrenador.html">Perfil de entrenador</a></li>
+        <li><a href="acerca-de.html">Acerca de</a></li>
+        <li><a href="configuracion.html">Configuración</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="ficha">
+      <h1>Perfil de entrenador</h1>
+      <img src="assets/entrenador.png" alt="Foto de perfil" width="400" height="400">
+
+      <h1>#0001 PURPLE</h1>
+      <p><b>Edad:</b> 11</p>
+      <p><b>Ciudad origen:</b> Lavender Town</p>
+      <p><b>Altura:</b> 1.34cm</p>
+      <p><b>Bio:</b> PURPLE es un personaje secreto de POKÉMON PURPLE que aparece cuando el 
+        jugador pasa mucho tiempo en Lavender Town. Su tipo de Pokémon favorito es fanasma.</p>
+
+      <button type="submit"> ✏️ Editar Perfil</button>
+      
+    </section>
+
+    <section>
+      <ul class="pokemon-list">
+        <li class="pokemon-card">
+          <a class="pokemon-card__link" href="estadisticas.html"> dialogo-favoritos.html
+            <img class="pokemon-card__image" src="assets/squirtle.png" alt="Squirtle" width="96" height="96">
+            <span class="pokemon-card__number">#007</span>
+            <span class="pokemon-card__name">Squirtle</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>Proyecto académico del curso Desarrollo de Aplicaciones Web
+        (<abbr title="Curso de Informática 0137">CI-0137</abbr>),
+        Escuela de Ciencias de la Computación e Informática,
+        <abbr title="Universidad de Costa Rica">UCR</abbr>.
+        <time datetime="2026">2026</time>.</small></p>
+
+    <p><small>Pokémon y sus personajes son marcas registradas de Nintendo,
+        Game Freak y The Pokémon Company. Este sitio no tiene ninguna relación con
+        ellos y se usa únicamente con fines educativos.</small></p>
+
+    <p><small>Ilustraciones y sprites tomados del repositorio
+        <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener">PokeAPI/sprites</a>.
+        Datos de referencia consultados en
+        <a href="https://pokemondb.net/" target="_blank" rel="noopener">Pokémon Database</a>.</small></p>
+  </footer>
+
+</html>
