@@ -46,7 +46,34 @@
       <p><b>Bio:</b> PURPLE es un personaje secreto de POKÉMON PURPLE que aparece cuando el 
         jugador pasa mucho tiempo en Lavender Town. Su tipo de Pokémon favorito es fanasma.</p>
 
-      <button type="submit"> ✏️ Editar Perfil</button>
+      <button type="button" command="show-modal" commandfor="editar-perfil"> ✏️ Editar Perfil</button>
+
+      <dialog id="editar-perfil">
+        <form class="buscador" action="./" method="get">
+          <fieldset>
+            <legend>Editar perfil</legend>
+
+            <label for="nombre">Nombre</label>
+            <input type="search" id="nombre" name="nombre">
+
+            <label for="edad">Edad</label>
+            <input type="search" id="edad" name="edad">
+
+            <label for="origen">Ciudad origen</label>
+            <input type="search" id="origen" name="origen">
+
+            <label for="altura">Altura</label>
+            <input type="search" id="altura" name="altura">
+
+            <label for="bio">Bio</label>
+            <input type="search" id="bio" name="bio">
+          </fieldset>
+        </form>
+        
+        <button type="button" command="close" commandfor="editar-perfil">Cancelar</button>
+        <button type="button" command="close" commandfor="editar-perfil">Guardar</button>
+
+      </dialog>
       
     </section>
 
