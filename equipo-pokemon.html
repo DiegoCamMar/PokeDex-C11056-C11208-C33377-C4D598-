@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" command="show-modal" commandfor="confirmar-demo">
+        Equipo pokemon
+    </button>
+
+    <dialog id="confirmar-demo">
+        <h3>Team Pokémon</h3>
+        <button type="button" command="close" commandfor="confirmar-demo">X</button>
+        <p>5 de 6 espacios ocupados</p>
+
+        <article>
+            <img src="assets\blastoise.png" alt="Imagen de Blastoise">
+            <p>#001</p>
+            <p>Blastoise</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\bulbasaur.png" alt="Imagen de Blastoise">
+            <p>#002</p>
+            <p>Bulbasaur</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charizard.png" alt="Imagen de Blastoise">
+            <p>#003</p>
+            <p>Charizard</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmander.png" alt="Imagen de Blastoise">
+            <p>#004</p>
+            <p>Charmander</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmeleon.png" alt="Imagen de Blastoise">
+            <p>#005</p>
+            <p>Charmeleon</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <p>+</p>
+            <p>Espacio libre</p>
+        </article>
+
+        <button type="button" command="close" commandfor="confirmar-demo">Agregar desde capturados</button>
+        <button type="button" command="close" commandfor="confirmar-demo">Cerrar</button>
+    </dialog>
+</body>
+
+</html>
