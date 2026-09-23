@@ -114,6 +114,15 @@ a {
   padding-left: 0;
 }
 
+/*Específico para diálogos. El color de fondo por defecto de las páginas es 
+celeste, mas los dialogs son blancos, lo cual hace que el texto de hrefs que 
+usualmente sería visible contra el fondo celeste sea más difícil de ver contra 
+el fondo blanco. Por instrucción de no preocuparse demasiado por la estética, 
+lo que se hizo fue cambiar el color de los hrefs a celeste.*/
+dialog a {
+  color: var(--navy);
+}
+
 
 /* --------------------------------------------------------------------------
    4. Tabla de estadísticas

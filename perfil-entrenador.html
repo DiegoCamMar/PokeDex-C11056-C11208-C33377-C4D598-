@@ -88,7 +88,7 @@
         </li>
 
         <li class="pokemon-card">
-          <button type="button" command="show-modal" commandfor="favoritos">Favoritos</button>
+          <button type="button" command="show-modal" commandfor="dialogo-favoritos">Favoritos</button>
         </li>
 
         <li class="pokemon-card">
@@ -143,6 +143,50 @@
 
         <button type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
         <button type="button" command="close" commandfor="equipo">Cerrar</button>
+      </dialog>
+
+      <dialog id="dialogo-favoritos">
+        <h2 id="titulo-favoritos">Favoritos</h2>
+        <button type="button" command="close" commandfor="dialogo-favoritos" aria-label="Cerrar favoritos">X</button>
+
+        <p>3 Pokémon marcados como favoritos</p>
+
+        <ul>
+          <li>
+            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img src="assets/charizard.png" alt="Charizard" width="96" height="96">
+            <p>#006</p>
+            <h3>Charizard</h3>
+            <p>Tipos: Fuego, Volador</p>
+            <a href="detalle-pokemon-charizard.html">Ver detalle de Charizard</a>
+            <button type="button">Quitar de favoritos</button>
+          </li>
+
+          <li>
+            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img src="assets/squirtle.png" alt="Squirtle" width="96" height="96">
+            <p>#007</p>
+            <h3>Squirtle</h3>
+            <p>Tipos: Agua</p>
+            <a href="detalle-pokemon-squirtle.html">Ver detalle de Squirtle</a>
+            <button type="button">Quitar de favoritos</button>
+          </li>
+
+          <li>
+            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img src="assets/pikachu.png" alt="Pikachu" width="96" height="96">
+            <p>#025</p>
+            <h3>Pikachu</h3>
+            <p>Tipos: Eléctrico</p>
+            <a href="detalle-pokemon-pikachu.html">Ver detalle de Pikachu</a>
+            <button type="button">Quitar de favoritos</button>
+          </li>
+        </ul>
+
+        <p>
+          <button type="button">Agregar desde capturados</button>
+          <button type="button" command="close" commandfor="dialogo-favoritos">Cerrar</button>
+        </p>
       </dialog>
 
       <dialog id="tabla-estadisticas">
