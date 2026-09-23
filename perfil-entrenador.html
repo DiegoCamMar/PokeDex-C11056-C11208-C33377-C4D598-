@@ -77,16 +77,73 @@
       
     </section>
 
-    <section>
+    <section id="perfil-opciones">
       <ul class="pokemon-list">
         <li class="pokemon-card">
-          <a class="pokemon-card__link" href="estadisticas.html">
-            <img class="pokemon-card__image" src="assets/squirtle.png" alt="Squirtle" width="96" height="96">
-            <span class="pokemon-card__number">#007</span>
-            <span class="pokemon-card__name">Squirtle</span>
-          </a>
+          <button type="button" command="show-modal" commandfor="equipo">Equipo Pokémon</button>
+        </li>
+
+        <li class="pokemon-card">
+          <button type="button" command="show-modal" commandfor="capturados">Pokémon Capturados</button>
+        </li>
+
+        <li class="pokemon-card">
+          <button type="button" command="show-modal" commandfor="favoritos">Favoritos</button>
+        </li>
+
+        <li class="pokemon-card">
+          <button type="button" command="show-modal" commandfor="estadisticas">Estadísticas</button>
         </li>
       </ul>
+
+      <dialog id="equipo">
+        <h3>Team Pokémon</h3>
+        <button type="button" command="close" commandfor="team-pokemon">X</button>
+        <p>5 de 6 espacios ocupados</p>
+
+        <article>
+            <img src="assets\blastoise.png" alt="Imagen de Blastoise">
+            <p>#001</p>
+            <p>Blastoise</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\bulbasaur.png" alt="Imagen de Blastoise">
+            <p>#002</p>
+            <p>Bulbasaur</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charizard.png" alt="Imagen de Blastoise">
+            <p>#003</p>
+            <p>Charizard</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmander.png" alt="Imagen de Blastoise">
+            <p>#004</p>
+            <p>Charmander</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmeleon.png" alt="Imagen de Blastoise">
+            <p>#005</p>
+            <p>Charmeleon</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <p>+</p>
+            <p>Espacio libre</p>
+        </article>
+
+        <button type="button" command="close" commandfor="team-pokemon">Agregar desde capturados</button>
+        <button type="button" command="close" commandfor="team-pokemon">Cerrar</button>
+      </dialog>
     </section>
   </main>
 
