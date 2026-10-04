@@ -1,0 +1,29 @@
+{
+  "name": "ci0137-pokedex",
+  "version": "1.0.0",
+  "description": "Proyecto PokéDex del curso **Desarrollo de Aplicaciones Web**, Escuela de Ciencias de la Computación e Informática, Universidad de Costa Rica. Elaborado por los estudiantes Alessandra González, Anfernhy Berrocal, Kiara Brenes y Diego Camacho.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-.git"
+  },
+  "keywords": [],
+  "author": "Alessandra González, Anfernhy Berrocal, Kiara Brenes y Diego Camacho",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-/issues"
+  },
+  "homepage": "https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-#readme",
+  "devDependencies": {
+    "sass": "^1.105.0",
+    "stylelint": "^17.15.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}
