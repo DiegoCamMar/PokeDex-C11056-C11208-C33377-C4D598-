@@ -31,9 +31,17 @@
       </a>
     </p>
 
+    <!--
+      Menú principal del sitio. Se usa <nav> porque es un bloque de navegación,
+      y adentro una lista <ul> (no ordenada) porque el orden de estos enlaces
+      no importa para el significado, solo para el diseño.
+      Cada enlace <a> lleva a otra página (cambia la URL); no confundir con
+      un <button>, que sirve para ejecutar una acción en la misma página
+      (como enviar un formulario), no para navegar.
+    -->
     <nav>
       <ul>
-        <li><a href="./" accesskey="p">Pokédex</a></li>
+        <li><a href="./" accesskey="p" aria-current="page">Pokédex</a></li>
         <li><a href="perfil-entrenador.html">Perfil de entrenador</a></li>
         <li><a href="acerca-de.html">Acerca de</a></li>
         <li><a href="configuracion.html">Configuración</a></li>
