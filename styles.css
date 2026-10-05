@@ -1389,3 +1389,46 @@ footer a {
   border-top: 1px solid var(--linea);
 }
 
+
+
+/* --- CAMBIO TIPOGRAFÍA --- */
+/* Se sobreescribe --fuente-titulo sólo para perfil entrenador, demás páginas siguen usando Fredoka. */
+.ficha-perfil,
+.dialogo-editar {
+  --fuente-titulo: "Space Grotesk", "Trebuchet MS", system-ui, sans-serif;
+}
+
+
+/* Animación: se hace más grande al pasar el cursor por la tarjeta de opción. */
+.perfil-opcion-card {
+  transition: box-shadow var(--dur) var(--ease),
+              border-color var(--dur),
+              transform 0.25s ease; /* propiedad nombrada: transform */
+}
+
+.perfil-opcion-card:hover,
+.perfil-opcion-card:focus-visible {
+  transform: scale(1.03); /* distinto al translateY/translateX del sitio */
+}
+
+.entrenador-ficha__btn-editar {
+  transition: transform 0.2s ease,
+              box-shadow var(--dur) var(--ease),
+              background var(--dur); /* propiedad nombrada: transform */
+}
+
+.entrenador-ficha__btn-editar:hover,
+.entrenador-ficha__btn-editar:focus-visible {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+.dialogo-editar .boton {
+  transition: transform 0.18s ease,
+              box-shadow var(--dur) var(--ease),
+              background var(--dur); /* propiedad nombrada: transform */
+}
+
+.dialogo-editar .boton:hover,
+.dialogo-editar .boton:focus-visible {
+  transform: scale(1.05);
+}
