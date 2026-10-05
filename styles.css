@@ -133,7 +133,7 @@ img {
      ahora aparece en la pastilla del número y en el hover. */
 .pokemon-card {
   position: relative;
-  container-type: inline-size;
+
   text-align: center;
   color: var(--navy);
   background: linear-gradient(180deg, #fff, var(--blanco));
@@ -693,10 +693,12 @@ footer a {
 
 
 /* --------------------------------------------------------------------------
-   8. Consultas de contenedor (clase 5)
+   8. Consultas de media (clase 5)
    -------------------------------------------------------------------------- */
 
-@container (inline-size >= 20rem) {
+/* Reemplaza @container: cuando el viewport supera 42 rem las tarjetas
+   tienen al menos 20 rem de ancho (grid auto-fit con minmax de 14 rem). */
+@media (width >= 42rem) {
   .pokemon-card__name {
     font-size: 1.35rem;
   }
