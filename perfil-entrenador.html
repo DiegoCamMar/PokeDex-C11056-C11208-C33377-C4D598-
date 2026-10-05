@@ -169,52 +169,88 @@
       </ul>
 
       <dialog id="equipo">
-        <h2>Team Pokémon</h2>
-        <button type="button" command="close" commandfor="equipo">X</button>
+        <h2 class="team-pokemon">Team Pokémon</h2>
+        <button class="boton-cerrar" type="button" command="close" commandfor="equipo">
+          <img src="icono-cerrar.svg" alt="" width="48" height="48">
+          <span class="solo-lectores">Cerrar equipo Pokémon</span>
+        </button>
         <p>5 de 6 espacios ocupados</p>
 
-        <article>
-            <img src="assets\blastoise.png" alt="Imagen de Blastoise">
-            <p>#001</p>
-            <p>Blastoise</p>
-            <button>Quitar</button>
-        </article>
+        <ul class="team-pokemon-list">
+          <li>
+            <article class="team-pokemon-card">
+              <img src="assets\blastoise.png" alt="Blastoise">
+              <p class="pokemon-number">#001</p>
+              <p class="team-pokemon-name">Blastoise</p>
+              <ul class="team-pokemon-types">
+                <li class="tipo tipo--agua">Agua</li>
+              </ul>
+              <button class="boton-quitar">Quitar</button>
+            </article>
+          </li>
+  
+          <li>
+            <article class="team-pokemon-card">
+                <img src="assets\bulbasaur.png" alt="Bulbasaur">
+                <p class="pokemon-number">#002</p>
+                <p class="team-pokemon-name">Bulbasaur</p>
+                <ul class="team-pokemon-types">
+                  <li class="tipo tipo--planta">Planta</li>
+                  <li class="tipo tipo--veneno">Veneno</li>
+                </ul>
+                <button class="boton-quitar">Quitar</button>
+            </article>
+          </li>
+  
+          <li>
+            <article class="team-pokemon-card">
+              <img src="assets\charizard.png" alt="Charizard">
+              <p class="pokemon-number">#003</p>
+              <p class="team-pokemon-name">Charizard</p>
+              <ul class="team-pokemon-types">
+                <li class="tipo tipo--fuego">Fuego</li>
+                <li class="tipo tipo--volador">Volador</li>
+              </ul>
+              <button class="boton-quitar">Quitar</button>
+            </article>
+          </li>
+  
+          <li>
+            <article class="team-pokemon-card">
+              <img src="assets\charmander.png" alt="Charmander">
+              <p class="pokemon-number">#004</p>
+              <p class="team-pokemon-name">Charmander</p>
+              <ul class="team-pokemon-types">
+                <li class="tipo tipo--fuego">Fuego</li>
+              </ul>
+              <button class="boton-quitar">Quitar</button>
+            </article>
+          </li>
+  
+          <li>
+            <article class="team-pokemon-card">
+              <img src="assets\charmeleon.png" alt="Charmeleon">
+              <p class="pokemon-number">#005</p>
+              <p class="team-pokemon-name">Charmeleon</p>
+              <ul class="team-pokemon-types">
+                <li class="tipo tipo--fuego">Fuego</li>
+              </ul>
+              <button class="boton-quitar">Quitar</button>
+            </article>
+          </li>
 
-        <article>
-            <img src="assets\bulbasaur.png" alt="Imagen de Blastoise">
-            <p>#002</p>
-            <p>Bulbasaur</p>
-            <button>Quitar</button>
-        </article>
+          <li>
+            <article class="team-pokemon-card empty">
+              <span class="empty-icon" aria-hidden="true">+</span>
+              <p>Espacio libre</p>
+            </article>
+          </li>
+        </ul>
 
-        <article>
-            <img src="assets\charizard.png" alt="Imagen de Blastoise">
-            <p>#003</p>
-            <p>Charizard</p>
-            <button>Quitar</button>
-        </article>
-
-        <article>
-            <img src="assets\charmander.png" alt="Imagen de Blastoise">
-            <p>#004</p>
-            <p>Charmander</p>
-            <button>Quitar</button>
-        </article>
-
-        <article>
-            <img src="assets\charmeleon.png" alt="Imagen de Blastoise">
-            <p>#005</p>
-            <p>Charmeleon</p>
-            <button>Quitar</button>
-        </article>
-
-        <article>
-            <p>+</p>
-            <p>Espacio libre</p>
-        </article>
-
-        <button type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
-        <button type="button" command="close" commandfor="equipo">Cerrar</button>
+        <div class="team-dialog-actions">
+          <button class="add-team-pokemon-button" type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
+          <button class="close-team-dialog" type="button" command="close" commandfor="equipo">Cerrar</button>
+        </div>
       </dialog>
 
       <dialog id="dialogo-favoritos" class="modal-favoritos" aria-labelledby="titulo-favoritos">

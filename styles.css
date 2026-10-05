@@ -84,9 +84,24 @@ img {
   position: absolute;
   width: 1px;
   height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+.boton-cerrar {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.boton-cerrar img {
+  display: block;
 }
 
 
@@ -1433,4 +1448,190 @@ footer a {
 .dialogo-editar .boton:hover,
 .dialogo-editar .boton:focus-visible {
   transform: scale(1.05);
+}
+/* --------------------------------------------------------------------------
+   Equipo pokemon
+   -------------------------------------------------------------------------- */
+
+#equipo {
+  border: none;
+  padding: 1rem 1.8rem;
+  border-radius: var(--radio-xl);
+}
+
+#equipo p {
+  color: var(--tinta-suave)
+}
+
+.team-pokemon {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--linea);
+}
+
+.team-pokemon::before {
+  content: "";
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  background-image: url("icono-equipo-pokemon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.team-pokemon-name {
+  font-family: var(--fuente-titulo);
+  color: var(--navy);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.team-pokemon-types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+.boton-cerrar {
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+}
+
+.team-pokemon-list {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.team-pokemon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 4rem;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-1), var(--brillo);
+  border: 1.5px solid var(--linea);
+}
+
+.empty {
+  height: 100%;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  box-shadow: none;
+  border: 1.5px dashed var(--azul-borde);
+  background: var(--blanco);
+}
+
+.empty-icon {
+  display: grid;
+  place-items: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--sombra-2);
+  color: var(--azul);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.empty p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.pokemon-number {
+  background: var(--amarillo);
+  width: fit-content;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radio-pastilla);
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  font-family: var(--fuente-titulo);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.boton-quitar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--rojo);
+  background-color: transparent;
+  color: var(--rojo);
+  padding: 0.6rem 1.3rem;
+  border-radius: var(--radio-pastilla);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-quitar::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("icono-menos.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.team-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin: 1rem -1.8rem -1rem;
+  padding: 1rem 1.8rem;
+  background: var(--blanco);
+}
+
+.add-team-pokemon-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--azul);
+  border: none;
+  padding: 0.8rem 1.3rem;
+  border-radius: var(--radio-pastilla);
+  color: var(--blanco);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-team-pokemon-button::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("icono-mas.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.close-team-dialog {
+  padding: 0.8rem 1.3rem;
+  border-radius: var(--radio-pastilla);
+  border: 2px solid var(--linea);
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #fff;
 }
