@@ -558,7 +558,8 @@ section.buscador > p {
    colapsadas. Por eso pasa a separate con border-spacing: 0 (sin huecos
    entre celdas) y las líneas las ponen los border-top de cada celda. */
 .stats-table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0;
   background: #fff;
@@ -572,17 +573,17 @@ section.buscador > p {
    el encabezado y lleva relleno suficiente para no chocar con las esquinas
    redondeadas (el overflow: hidden de arriba las recorta). */
 .stats-table caption {
-  padding: 1rem 1.25rem .25rem;
+  padding: 0.75rem 0 0.5rem 0.2rem;
   text-align: left;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--tinta-suave);
-  background: var(--crema);
+  background: transparent;
 }
 
 .stats-table th,
 .stats-table td {
   border-top: 1px solid var(--linea);
-  padding: 0.75rem;
+  padding: 0.4rem 0.75rem;
   text-align: center;
 }
 
@@ -603,7 +604,14 @@ section.buscador > p {
    del HTML como variable propia (style="--valor: 44"), así el número y la
    barra jamás se desincronizan. Cada columna toma un color de stat, y
    "llenar" la anima de 0 a su largo al cargar. */
-.stats-table tbody td::after {
+
+/*
+  Las barras de stats están comentadas porque los requerimientos del lab indican que no se deben agregar
+  styles en el HTML, pero si se quieren usar se pueden descomentar estas líneas y agregar las variables con
+  (style="--valor: 44") para cada valor <td> de la tabla en el HTML. Además en el diseño en Figma no se
+  incluían las barras de stats, por lo que no se ven en el diseño final.
+
+.stats-table tbody td:not(:last-child)::after {
   content: "";
   display: block;
   height: .4rem;
@@ -611,6 +619,7 @@ section.buscador > p {
   width: 100%;
   max-width: 5rem;
   border-radius: var(--radio-pastilla);
+
   background:
     linear-gradient(var(--color-stat, var(--stat-ps)) 0 0) left / calc(var(--valor, 0) / 130 * 100%) 100% no-repeat,
     var(--pista);
@@ -623,12 +632,39 @@ section.buscador > p {
 .stats-table tbody td:nth-child(3),
 .stats-table tbody td:nth-child(5) { --color-stat: var(--stat-defensa); }
 .stats-table tbody td:nth-child(6) { --color-stat: var(--stat-velocidad); }
+*/
 
 .stats-table__total,
 .stats-table__total td {
   font-weight: 700;
   background: var(--amarillo);
-  font-size: 1.15rem;
+  font-size: 1rem;
+}
+
+.stats-table__total-pokemon {
+  display: inline-block;
+
+  min-width: 2.8rem;
+  padding: 0.2rem 0.55rem;
+
+  color: var(--blanco);
+  background: var(--navy);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  border-radius: var(--radio-pastilla);
+}
+
+.stats-table__pokemon {
+  display: flex;
+  align-items: center;
+}
+
+.stats-table__pokemon img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
 }
 
 
@@ -1016,4 +1052,143 @@ footer a {
     animation: none !important;
     transition-duration: .01ms !important;
   }
+}
+
+
+
+/* --------------------------------------------------------------------------
+   Modal de estadísticas
+   -------------------------------------------------------------------------- */
+
+.dialogo-estadisticas {
+  border: none;
+  border-radius: var(--radio-lg);
+  padding: 0;
+  box-shadow: var(--sombra-3), 0 0 0 1px rgba(20, 44, 82, .10);
+
+  width: calc(100% - 2rem);
+  max-width: 65rem;
+
+  color: var(--navy);
+  background: var(--blanco);
+}
+
+.dialogo-estadisticas::backdrop {
+  background: rgba(20, 44, 82, .50);
+  backdrop-filter: blur(4px);
+}
+
+.dialogo-estadisticas__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.25rem 3rem 0 2.8rem;
+
+  border-bottom: 1px solid var(--linea);
+}
+
+.dialogo-estadisticas__titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 0;
+
+  color: var(--navy);
+  font-size: 1.5rem;
+}
+
+.dialogo-estadisticas__titulo::before {
+  content: "";
+
+  display: block;
+
+  width: 3rem;
+  height: 3rem;
+
+  flex-shrink: 0;
+
+  background-image: url('assets/icono-estadisticas.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialogo-estadisticas__cerrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  padding: 0;
+
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.dialogo-estadisticas__cerrar:hover,
+.dialogo-estadisticas__cerrar:focus-visible {
+  background: var(--crema);
+  transform: scale(1.05);
+}
+
+.dialogo-estadisticas__cerrar::before {
+  content: "";
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background-image: url("assets/icono-cerrar.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialogo-estadisticas__descripcion {
+  margin: 0;
+
+  padding: 1rem 0 0.75rem 3.5rem;
+
+  color: var(--tinta-suave);
+
+  font-size: 0.8rem;
+}
+
+.dialogo-estadisticas__acciones {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 0.75rem 3.5rem 1rem 0;
+
+  border-top: 1px solid var(--linea);
+}
+
+.dialogo-estadisticas__boton-cerrar {
+  border: none;
+  border-radius: var(--radio-pastilla);
+
+  padding: 0.7rem 1.4rem;
+
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+
+  background: var(--azul);
+  color: var(--blanco);
+
+  box-shadow: var(--sombra-1);
+
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.dialogo-estadisticas__boton-cerrar:hover,
+.dialogo-estadisticas__boton-cerrar:focus-visible {
+  background: var(--azul-borde);
+  transform: scale(1.05);
 }
