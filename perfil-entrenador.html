@@ -21,6 +21,7 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="favoritos.css">
 </head>
 
 <body>
@@ -216,47 +217,61 @@
         <button type="button" command="close" commandfor="equipo">Cerrar</button>
       </dialog>
 
-      <dialog id="dialogo-favoritos">
-        <h2 id="titulo-favoritos">Favoritos</h2>
-        <button type="button" command="close" commandfor="dialogo-favoritos" aria-label="Cerrar favoritos">X</button>
+      <dialog id="dialogo-favoritos" class="modal-favoritos" aria-labelledby="titulo-favoritos">
+        <div class="modal-favoritos__encabezado">
+          <h2 id="titulo-favoritos" class="modal-favoritos__titulo">Favoritos</h2>
+          <button type="button" class="modal-favoritos__cerrar" command="close" commandfor="dialogo-favoritos"><span class="solo-lectores">Cerrar favoritos</span></button>
+        </div>
 
-        <p>3 Pokémon marcados como favoritos</p>
+        <p class="modal-favoritos__cantidad">3 Pokémon marcados como favoritos</p>
 
-        <ul>
-          <li>
-            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
-            <img src="assets/charizard.png" alt="Charizard" width="96" height="96">
-            <p>#006</p>
-            <h3>Charizard</h3>
-            <p>Tipos: Fuego, Volador</p>
-            <a href="detalle-pokemon-charizard.html">Ver detalle de Charizard</a>
-            <button type="button">Quitar de favoritos</button>
+        <ul class="modal-favoritos__lista">
+          <li class="favorito">
+            <img class="favorito__estrella" src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img class="favorito__imagen" src="assets/charizard.png" alt="Charizard" width="96" height="96">
+            <div class="favorito__datos">
+              <p class="favorito__numero">#006</p>
+              <h3 class="favorito__nombre">Charizard</h3>
+              <p class="favorito__tipos"><span class="tipo tipo--fuego">Fuego</span> <span class="tipo tipo--volador">Volador</span></p>
+            </div>
+            <div class="favorito__botones">
+              <a class="favorito__ver" href="detalle-pokemon-charizard.html">Ver detalle<span class="solo-lectores"> de Charizard</span></a>
+              <button type="button" class="favorito__quitar">Quitar de favoritos</button>
+            </div>
           </li>
 
-          <li>
-            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
-            <img src="assets/squirtle.png" alt="Squirtle" width="96" height="96">
-            <p>#007</p>
-            <h3>Squirtle</h3>
-            <p>Tipos: Agua</p>
-            <a href="detalle-pokemon-squirtle.html">Ver detalle de Squirtle</a>
-            <button type="button">Quitar de favoritos</button>
+          <li class="favorito">
+            <img class="favorito__estrella" src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img class="favorito__imagen" src="assets/squirtle.png" alt="Squirtle" width="96" height="96">
+            <div class="favorito__datos">
+              <p class="favorito__numero">#007</p>
+              <h3 class="favorito__nombre">Squirtle</h3>
+              <p class="favorito__tipos"><span class="tipo tipo--agua">Agua</span></p>
+            </div>
+            <div class="favorito__botones">
+              <a class="favorito__ver" href="detalle-pokemon-squirtle.html">Ver detalle<span class="solo-lectores"> de Squirtle</span></a>
+              <button type="button" class="favorito__quitar">Quitar de favoritos</button>
+            </div>
           </li>
 
-          <li>
-            <img src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
-            <img src="assets/pikachu.png" alt="Pikachu" width="96" height="96">
-            <p>#025</p>
-            <h3>Pikachu</h3>
-            <p>Tipos: Eléctrico</p>
-            <a href="detalle-pokemon-pikachu.html">Ver detalle de Pikachu</a>
-            <button type="button">Quitar de favoritos</button>
+          <li class="favorito">
+            <img class="favorito__estrella" src="assets/favorite-icon.svg" alt="Favorito" width="17" height="16">
+            <img class="favorito__imagen" src="assets/pikachu.png" alt="Pikachu" width="96" height="96">
+            <div class="favorito__datos">
+              <p class="favorito__numero">#025</p>
+              <h3 class="favorito__nombre">Pikachu</h3>
+              <p class="favorito__tipos"><span class="tipo tipo--electrico">Eléctrico</span></p>
+            </div>
+            <div class="favorito__botones">
+              <a class="favorito__ver" href="detalle-pokemon-pikachu.html">Ver detalle<span class="solo-lectores"> de Pikachu</span></a>
+              <button type="button" class="favorito__quitar">Quitar de favoritos</button>
+            </div>
           </li>
         </ul>
 
-        <p>
-          <button type="button">Agregar desde capturados</button>
-          <button type="button" command="close" commandfor="dialogo-favoritos">Cerrar</button>
+        <p class="modal-favoritos__pie">
+          <button type="button" class="modal-favoritos__agregar">Agregar desde capturados</button>
+          <button type="button" class="modal-favoritos__boton-cerrar" command="close" commandfor="dialogo-favoritos">Cerrar</button>
         </p>
       </dialog>
 
