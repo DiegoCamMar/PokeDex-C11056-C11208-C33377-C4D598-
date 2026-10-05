@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#142C52" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+=======
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M47 24C47 11.2975 36.7025 1 24 1C11.2975 1 1 11.2975 1 24C1 36.7025 11.2975 47 24 47C36.7025 47 47 36.7025 47 24Z" fill="#F2F6FA" stroke="#DCE5F0" stroke-width="2"/>
+<mask id="mask0_36_16708" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="13" y="13" width="22" height="22">
+<path d="M35 13H13V35H35V13Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_36_16708)">
+<path d="M18.5 18.5L29.5 29.5M29.5 18.5L18.5 29.5" stroke="#142C52" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
+>>>>>>> LabDos/Header-Estadisticas
