@@ -78,31 +78,42 @@
         <button class="entrenador-ficha__btn-editar boton boton--rojo" type="button" command="show-modal" commandfor="editar-perfil">Editar Perfil</button>
       </div>
 
-      <dialog id="editar-perfil">
-        <form class="buscador" action="./" method="get">
+      <dialog id="editar-perfil" class="dialogo-editar">
+        <form class="buscador dialogo-editar__form" method="dialog">
           <fieldset>
             <legend>Editar perfil</legend>
 
-            <label for="nombre">Nombre</label>
-            <input type="search" id="nombre" name="nombre">
+            <div class="dialogo-editar__campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" value="PURPLE">
+            </div>
 
-            <label for="edad">Edad</label>
-            <input type="search" id="edad" name="edad">
+            <div class="dialogo-editar__campo">
+              <label for="edad">Edad</label>
+              <input type="number" id="edad" name="edad" min="1" max="99" value="11">
+            </div>
 
-            <label for="origen">Ciudad origen</label>
-            <input type="search" id="origen" name="origen">
+            <div class="dialogo-editar__campo">
+              <label for="origen">Ciudad origen</label>
+              <input type="text" id="origen" name="origen" value="Lavender Town">
+            </div>
 
-            <label for="altura">Altura</label>
-            <input type="search" id="altura" name="altura">
+            <div class="dialogo-editar__campo">
+              <label for="altura">Altura</label>
+              <input type="text" id="altura" name="altura" value="1.34 cm">
+            </div>
 
-            <label for="bio">Bio</label>
-            <input type="search" id="bio" name="bio">
+            <div class="dialogo-editar__campo">
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" rows="3">PURPLE es un personaje secreto de POKÉMON PURPLE que aparece cuando el jugador pasa mucho tiempo en Lavender Town. Su tipo de Pokémon favorito es fantasma.</textarea>
+            </div>
           </fieldset>
-        </form>
-        
-        <button type="button" command="close" commandfor="editar-perfil">Cancelar</button>
-        <button type="button" command="close" commandfor="editar-perfil">Guardar</button>
 
+          <div class="dialogo-editar__acciones">
+            <button class="boton boton--claro" type="button" command="close" commandfor="editar-perfil">Cancelar</button>
+            <button class="boton boton--rojo" type="submit">Guardar</button>
+          </div>
+        </form>
       </dialog>
       
     </section>

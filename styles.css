@@ -446,6 +446,9 @@ section.buscador > p {
 /* Campos claros con esquinas de pastilla. El foco los "enciende" con un
    halo amarillo (box-shadow) además del contorno. */
 .buscador input[type="search"],
+.buscador input[type="text"],
+.buscador input[type="number"],
+.buscador textarea,
 .buscador select {
   font: inherit;
   color: var(--navy);
@@ -462,6 +465,7 @@ section.buscador > p {
 }
 
 .buscador input:focus-visible,
+.buscador textarea:focus-visible,
 .buscador select:focus-visible {
   outline: none;
   border-color: var(--amarillo);
@@ -1320,3 +1324,68 @@ footer a {
 .entrenador-ficha__btn-editar::before {
   display: none;
 }
+
+
+/* ---- Diálogo "Editar perfil" --------------------------------------------- */
+
+.dialogo-editar {
+  border: none;
+  border-radius: var(--radio-lg);
+  padding: 0;
+  box-shadow: var(--sombra-3), 0 0 0 1px rgba(20, 44, 82, .10);
+  max-width: 30rem;
+  width: calc(100% - 2rem);
+}
+
+.dialogo-editar::backdrop {
+  background: rgba(20, 44, 82, .50);
+  backdrop-filter: blur(4px);
+}
+
+.dialogo-editar__form {
+  padding: 1.5rem;
+}
+
+/* Fieldset vertical: un campo por fila */
+.dialogo-editar__form fieldset {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
+}
+
+.dialogo-editar__form legend {
+  color: var(--navy);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Cada par label+input apilados */
+.dialogo-editar__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.dialogo-editar__campo:last-child {
+  margin-bottom: 0;
+}
+
+/* Inputs y textarea ocupan el ancho completo */
+.dialogo-editar__form input,
+.dialogo-editar__form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Fila de botones al pie */
+.dialogo-editar__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linea);
+}
+
