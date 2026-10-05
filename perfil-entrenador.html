@@ -50,19 +50,33 @@
   </header>
 
   <main>
-    <section id="ficha">
+    <section id="ficha" class="ficha-perfil">
 
-      <img class="pokemon-card__image" src="assets/entrenador.png" alt="Imagen por defecto perfil entrenador" width="96" height="96">
-      <span class="pokemon-card__number">#0001</span>
-      <span class="pokemon-card__name">PURPLE</span>
+      <div class="entrenador-ficha">
+        <div class="entrenador-ficha__imagen-wrap">
+          <img class="entrenador-ficha__imagen" src="assets/entrenador.svg" alt="Imagen por defecto perfil entrenador" width="96" height="96">
+        </div>
 
-      <p><b>Edad:</b> 11</p>
-      <p><b>Ciudad origen:</b> Lavender Town</p>
-      <p><b>Altura:</b> 1.34cm</p>
-      <p><b>Bio:</b> PURPLE es un personaje secreto de POKÉMON PURPLE que aparece cuando el 
-        jugador pasa mucho tiempo en Lavender Town. Su tipo de Pokémon favorito es fanasma.</p>
+        <div class="entrenador-ficha__cuerpo">
+          <div class="entrenador-ficha__cabecera">
+            <span class="pokemon-card__number">#0002</span>
+            <span class="entrenador-ficha__nombre">PURPLE</span>
+          </div>
 
-      <button type="button" command="show-modal" commandfor="editar-perfil"> ✏️ Editar Perfil</button>
+          <div class="entrenador-ficha__meta">
+            <span class="entrenador-ficha__chip entrenador-ficha__chip--edad">11 años
+            </span>
+            <span class="entrenador-ficha__chip entrenador-ficha__chip--lugar">Lavender Town
+            </span>
+            <span class="entrenador-ficha__chip entrenador-ficha__chip--estatura">1.34 cm
+            </span>
+          </div>
+
+          <p class="entrenador-ficha__bio">PURPLE es un personaje secreto de POKÉMON PURPLE que aparece cuando el jugador pasa mucho tiempo en Lavender Town. Su tipo de Pokémon favorito es fantasma.</p>
+        </div>
+
+        <button class="entrenador-ficha__btn-editar boton boton--rojo" type="button" command="show-modal" commandfor="editar-perfil">Editar Perfil</button>
+      </div>
 
       <dialog id="editar-perfil">
         <form class="buscador" action="./" method="get">
