@@ -108,22 +108,52 @@
     </section>
 
     <section id="perfil-opciones">
-      <ul class="pokemon-list">
-        <li class="pokemon-card">
-          <button type="button" command="show-modal" commandfor="equipo">Equipo Pokémon</button>
+      <ul class="perfil-opciones-lista">
+
+        <li class="perfil-opcion-card">
+          <span class="perfil-opcion-card__icono perfil-opcion-card__icono--azul" aria-hidden="true"></span>
+          <span class="perfil-opcion-card__texto">
+            <span class="perfil-opcion-card__titulo">Equipo Pokémon</span>
+            <span class="perfil-opcion-card__subtitulo">5 de 6 espacios ocupados</span>
+          </span>
+          <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="equipo">
+            <span class="solo-lectores">Ver Equipo Pokémon</span>
+          </button>
         </li>
 
-        <li class="pokemon-card">
-          <button type="button" command="show-modal" commandfor="capturados">Pokémon Capturados</button>
+        <li class="perfil-opcion-card">
+          <span class="perfil-opcion-card__icono perfil-opcion-card__icono--rojo" aria-hidden="true"></span>
+          <span class="perfil-opcion-card__texto">
+            <span class="perfil-opcion-card__titulo">Pokémon Capturados</span>
+            <span class="perfil-opcion-card__subtitulo">24 Pokémon en tu colección</span>
+          </span>
+          <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="capturados">
+            <span class="solo-lectores">Ver Pokémon Capturados</span>
+          </button>
         </li>
 
-        <li class="pokemon-card">
-          <button type="button" command="show-modal" commandfor="dialogo-favoritos">Favoritos</button>
+        <li class="perfil-opcion-card">
+          <span class="perfil-opcion-card__icono perfil-opcion-card__icono--amarillo" aria-hidden="true"></span>
+          <span class="perfil-opcion-card__texto">
+            <span class="perfil-opcion-card__titulo">Favoritos</span>
+            <span class="perfil-opcion-card__subtitulo">4 Pokémon marcados</span>
+          </span>
+          <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="dialogo-favoritos">
+            <span class="solo-lectores">Ver Favoritos</span>
+          </button>
         </li>
 
-        <li class="pokemon-card">
-          <button type="button" command="show-modal" commandfor="tabla-estadisticas">Estadísticas</button>
+        <li class="perfil-opcion-card">
+          <span class="perfil-opcion-card__icono perfil-opcion-card__icono--verde" aria-hidden="true"></span>
+          <span class="perfil-opcion-card__texto">
+            <span class="perfil-opcion-card__titulo">Estadísticas</span>
+            <span class="perfil-opcion-card__subtitulo">Comparativa de tu equipo</span>
+          </span>
+          <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="tabla-estadisticas">
+            <span class="solo-lectores">Ver Estadísticas</span>
+          </button>
         </li>
+
       </ul>
 
       <dialog id="equipo">

@@ -518,6 +518,7 @@ section.buscador > p {
 .boton--rojo {
   background: var(--rojo);
   color: #fff;
+  box-shadow: 0 8px 18px -4px rgba(220, 45, 26, .55), inset 0 1px 0 rgba(255, 255, 255, .20);
 }
 
 .boton--claro {
@@ -1016,4 +1017,306 @@ footer a {
     animation: none !important;
     transition-duration: .01ms !important;
   }
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Perfil de entrenador
+   -------------------------------------------------------------------------- */
+
+
+/* --- Ficha (tarjeta blanca donde está toda la info del perfil) ------------ */
+
+.ficha-perfil {
+  position: relative;
+  color: var(--navy);
+  background: #fff;
+  border-radius: var(--radio-xl);
+  padding: 1.5rem;
+  box-shadow: var(--sombra-2), var(--brillo);
+  margin-bottom: 1.5rem;
+  animation: aparecer .6s var(--ease) backwards;
+}
+
+@media (width >= 40rem) {
+  .ficha-perfil {
+    padding: 2rem;
+  }
+}
+
+/* Grid de dos columnas: imagen | info.
+   En móvil colapsa a columna única. */
+.entrenador-ficha {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem 1.5rem;
+  align-items: start;
+}
+
+@media (width < 40rem) {
+  .entrenador-ficha {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cuadro con borde amarillo que enmarca la imagen del entrenador */
+.entrenador-ficha__imagen-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.entrenador-ficha__imagen {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border: none;
+  border-radius: var(--radio-lg);
+  padding: 0;
+  background: transparent;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Columna de información: encabezado, chips y bio apilados */
+.entrenador-ficha__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;    /* evita desbordamiento en grid */
+}
+
+.entrenador-ficha__cabecera {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.entrenador-ficha__nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--navy);
+}
+
+/* Chips de metadatos (edad, ciudad, altura): fondo crema y borde sutil */
+.entrenador-ficha__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.entrenador-ficha__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--crema);
+  color: var(--navy);
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radio-pastilla);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--amarillo-borde);
+}
+
+
+.entrenador-ficha__bio {
+  margin: 0;
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Botón rojo "Editar Perfil" en la esquina superior derecha de la tarjeta */
+.entrenador-ficha__btn-editar {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+@media (width >= 40rem) {
+  .entrenador-ficha__btn-editar {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+
+/* ---- Cuatro opciones de perfil (grid 2 × 2) ------------------------------ */
+
+.perfil-opciones-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+@media (width < 32rem) {
+  .perfil-opciones-lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tarjeta de opción: icono | texto | flecha */
+.perfil-opcion-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--navy);
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radio-lg);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--sombra-2), var(--brillo);
+  transition: box-shadow var(--dur) var(--ease), border-color var(--dur);
+}
+
+.perfil-opcion-card:hover {
+  border-color: var(--amarillo);
+  box-shadow: var(--sombra-3), var(--brillo);
+}
+
+/* Círculo de color con icono SVG */
+.perfil-opcion-card__icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  /* El fondo, radio y sombra vienen con el SVG exportado de Figma */
+}
+
+
+
+/* Bloque de texto: título + subtítulo apilados */
+.perfil-opcion-card__texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.perfil-opcion-card__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.perfil-opcion-card__subtitulo {
+  font-size: 0.82rem;
+  color: var(--tinta-suave);
+}
+
+/* Botón flecha circular a la derecha */
+.perfil-opcion-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: transform var(--dur) var(--ease);
+}
+
+.perfil-opcion-card__btn:hover {
+  transform: translateX(3px);
+}
+
+/* Para superficie blanca */
+.ficha-perfil :focus-visible,
+.perfil-opcion-card :focus-visible {
+  outline-color: var(--azul-borde);
+}
+
+
+/* Chips y botón editar (máscara SVG) */
+.entrenador-ficha__chip::before {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Para íconos de tarjetas de opción (equipo pokémon, favoritos, capturados, estadísticas) */
+.perfil-opcion-card__icono::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Chips de datos */
+.entrenador-ficha__chip::before {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.entrenador-ficha__chip--edad::before {
+  background-image: url('assets/icono-edad.svg');
+}
+
+.entrenador-ficha__chip--lugar::before {
+  background-image: url('assets/icono-lugar.svg');
+}
+
+.entrenador-ficha__chip--estatura::before {
+  background-image: url('assets/icono-estatura.svg');
+}
+
+/* Íconos de tarjetas: dimensiones heredadas de la regla base arriba */
+
+.perfil-opcion-card__icono--azul::before {
+  background-image: url('assets/icono-equipo.svg');
+}
+
+.perfil-opcion-card__icono--rojo::before {
+  background-image: url('assets/icono-capturados.svg');
+}
+
+.perfil-opcion-card__icono--amarillo::before {
+  background-image: url('assets/icono-favoritos.svg');
+}
+
+/* El ícono de estadísticas usa mask (SVG simple, no export de Figma completo) */
+.perfil-opcion-card__icono--verde::before {
+  background-image: url('assets/icono-estadisticas.svg');
+}
+
+/* Botón flecha (SVG completo de Figma: background-image) */
+.perfil-opcion-card__btn::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-image: url('assets/icono-flecha.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Botón editar perfil — solo texto, sin icono */
+.entrenador-ficha__btn-editar::before {
+  display: none;
 }
