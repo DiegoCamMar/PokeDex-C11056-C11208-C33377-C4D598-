@@ -12,13 +12,16 @@
 
   <!-- Hoja de estilos del sitio. Mismo elemento <link> que el favicon;
        lo que cambia es rel, que dice qué relación tiene el archivo con el documento. -->
+  <!-- Tipografías (Google Fonts): Fredoka para títulos y Figtree para el texto.
+      preconnect abre la conexión con anticipación para que la fuente llegue antes.
+      display=swap muestra el texto enseguida con la fuente de respaldo y la cambia al llegar. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap">
-      
-  <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="favoritos.css">
 </head>
 
 <body>
@@ -166,91 +169,52 @@
       </ul>
 
       <dialog id="equipo">
-        <h2 class="team-pokemon">Team Pokémon</h2>
-        <button
-            class="team-pokemon-boton-cerrar"
-            type="button"
-            command="close"
-            commandfor="equipo">
-            <span class="solo-lectores">Cerrar equipo Pokémon</span>
-        </button>
+        <h2>Team Pokémon</h2>
+        <button type="button" command="close" commandfor="equipo">X</button>
         <p>5 de 6 espacios ocupados</p>
 
-        <ul class="team-pokemon-list">
-          <li>
-            <article class="team-pokemon-card">
-              <img src="assets\blastoise.png" alt="Blastoise">
-              <p class="pokemon-number">#001</p>
-              <p class="team-pokemon-name">Blastoise</p>
-              <ul class="team-pokemon-types">
-                <li class="tipo tipo--agua">Agua</li>
-              </ul>
-              <button class="boton-quitar">Quitar</button>
-            </article>
-          </li>
-  
-          <li>
-            <article class="team-pokemon-card">
-                <img src="assets\bulbasaur.png" alt="Bulbasaur">
-                <p class="pokemon-number">#002</p>
-                <p class="team-pokemon-name">Bulbasaur</p>
-                <ul class="team-pokemon-types">
-                  <li class="tipo tipo--planta">Planta</li>
-                  <li class="tipo tipo--veneno">Veneno</li>
-                </ul>
-                <button class="boton-quitar">Quitar</button>
-            </article>
-          </li>
-  
-          <li>
-            <article class="team-pokemon-card">
-              <img src="assets\charizard.png" alt="Charizard">
-              <p class="pokemon-number">#003</p>
-              <p class="team-pokemon-name">Charizard</p>
-              <ul class="team-pokemon-types">
-                <li class="tipo tipo--fuego">Fuego</li>
-                <li class="tipo tipo--volador">Volador</li>
-              </ul>
-              <button class="boton-quitar">Quitar</button>
-            </article>
-          </li>
-  
-          <li>
-            <article class="team-pokemon-card">
-              <img src="assets\charmander.png" alt="Charmander">
-              <p class="pokemon-number">#004</p>
-              <p class="team-pokemon-name">Charmander</p>
-              <ul class="team-pokemon-types">
-                <li class="tipo tipo--fuego">Fuego</li>
-              </ul>
-              <button class="boton-quitar">Quitar</button>
-            </article>
-          </li>
-  
-          <li>
-            <article class="team-pokemon-card">
-              <img src="assets\charmeleon.png" alt="Charmeleon">
-              <p class="pokemon-number">#005</p>
-              <p class="team-pokemon-name">Charmeleon</p>
-              <ul class="team-pokemon-types">
-                <li class="tipo tipo--fuego">Fuego</li>
-              </ul>
-              <button class="boton-quitar">Quitar</button>
-            </article>
-          </li>
+        <article>
+            <img src="assets\blastoise.png" alt="Imagen de Blastoise">
+            <p>#001</p>
+            <p>Blastoise</p>
+            <button>Quitar</button>
+        </article>
 
-          <li>
-            <article class="team-pokemon-card empty">
-              <span class="empty-icon" aria-hidden="true">+</span>
-              <p>Espacio libre</p>
-            </article>
-          </li>
-        </ul>
+        <article>
+            <img src="assets\bulbasaur.png" alt="Imagen de Blastoise">
+            <p>#002</p>
+            <p>Bulbasaur</p>
+            <button>Quitar</button>
+        </article>
 
-        <div class="team-dialog-actions">
-          <button class="add-team-pokemon-button" type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
-          <button class="close-team-dialog" type="button" command="close" commandfor="equipo">Cerrar</button>
-        </div>
+        <article>
+            <img src="assets\charizard.png" alt="Imagen de Blastoise">
+            <p>#003</p>
+            <p>Charizard</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmander.png" alt="Imagen de Blastoise">
+            <p>#004</p>
+            <p>Charmander</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <img src="assets\charmeleon.png" alt="Imagen de Blastoise">
+            <p>#005</p>
+            <p>Charmeleon</p>
+            <button>Quitar</button>
+        </article>
+
+        <article>
+            <p>+</p>
+            <p>Espacio libre</p>
+        </article>
+
+        <button type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
+        <button type="button" command="close" commandfor="equipo">Cerrar</button>
       </dialog>
 
       <dialog id="dialogo-favoritos" class="modal-favoritos" aria-labelledby="titulo-favoritos">
@@ -311,170 +275,104 @@
         </p>
       </dialog>
 
-      <dialog class="dialogo-estadisticas" id="tabla-estadisticas">
+      <dialog id="tabla-estadisticas">
+            <h2>Estadísticas</h2>
+            <button type="button" command="close" commandfor="tabla-estadisticas">X</button>
+            <table>
+              <caption>Comparativa de los Pokémon de tu equipo</caption>
 
-        <div class="dialogo-estadisticas__encabezado">
-
-          <h2 class="dialogo-estadisticas__titulo">Estadísticas</h2>
-
-          <button 
-            class="dialogo-estadisticas__cerrar" 
-            type="button" 
-            command="close" 
-            commandfor="tabla-estadisticas">
-            <span class="solo-lectores">Cerrar estadísticas</span>
-          </button>
-          
-        </div>
-
-        <table class="stats-table">
-          <caption>Comparativa de los Pokémon de tu equipo</caption>
-
-          <thead>
-            <tr>
-              <th>Pokémon</th>
-              <th title="Puntos de salud">PS</th>
-              <th title="Ataque">ATQ</th>
-              <th title="Defensa">DEF</th>
-              <th title="Ataque Especial">AT.ESP</th>
-              <th title="Defensa Especial">DEF.ESP</th>
-              <th title="Velocidad">VEL</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/blastoise.png" alt="Blastoise" width="60" height="60">
-                  Blastoise
-                </span>
-              </th>
-              <td>79</td>
-              <td>83</td>
-              <td>100</td>
-              <td>85</td>
-              <td>105</td>
-              <td>78</td>
-              <td>
-                <span class="stats-table__total-pokemon">530</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/bulbasaur.png" alt="Bulbasaur" width="60" height="60">
-                  Bulbasaur
-                </span>
-              </th>
-              <td>45</td>
-              <td>49</td>
-              <td>49</td>
-              <td>65</td>
-              <td>65</td>
-              <td>45</td>
-              <td>
-                <span class="stats-table__total-pokemon">318</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/squirtle.png" alt="Squirtle" width="60" height="60">
-                  Squirtle
-                </span>
-              </th>
-              <td>44</td>
-              <td>48</td>
-              <td>65</td>
-              <td>50</td>
-              <td>64</td>
-              <td>43</td>
-              <td>
-                <span class="stats-table__total-pokemon">314</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/pikachu.png" alt="Pikachu" width="60" height="60">
-                  Pikachu
-                </span>
-              </th>
-              <td>35</td>
-              <td>55</td>
-              <td>40</td>
-              <td>50</td>
-              <td>50</td>
-              <td>90</td>
-              <td>
-                <span class="stats-table__total-pokemon">320</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/venusaur.png" alt="Venusaur" width="60" height="60">
-                  Venusaur
-                </span>
-              </th>
-              <td>80</td>
-              <td>82</td>
-              <td>83</td>
-              <td>100</td>
-              <td>100</td>
-              <td>80</td>
-              <td>
-                <span class="stats-table__total-pokemon">525</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <span class="stats-table__pokemon">
-                  <img src="assets/charmeleon.png" alt="Charmeleon" width="60" height="60">
-                  Charmeleon
-                </span>
-              </th>
-              <td>59</td>
-              <td>62</td>
-              <td>63</td>
-              <td>80</td>
-              <td>80</td>
-              <td>60</td>
-              <td>
-                <span class="stats-table__total-pokemon">405</span>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr class="stats-table__total">
-              <th scope="row">Promedio del equipo</th>
-              <td>57</td>
-              <td>63</td>
-              <td>67</td>
-              <td>72</td>
-              <td>77</td>
-              <td>66</td>
-              <td>
-                <span class="stats-table__total-pokemon">402</span>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        
-        <p class="dialogo-estadisticas__descripcion">Valores base tomados de la Pokédex - la fila de totales resume el equipo completo</p>
- 
-        <div class="dialogo-estadisticas__acciones">
-          <button 
-            class="dialogo-estadisticas__boton-cerrar"
-            type="button"
-            command="close"
-            commandfor="tabla-estadisticas">
-            Cerrar
-          </button>
-        </div>
-
-      </dialog>
+              <thead>
+                <tr>
+                  <th>Pokémon</th>
+                  <th abbr="PS">Puntos de salud</th>
+                  <th abbr="ATQ">Ataque</th>
+                  <th abbr="DEF">Defensa</th>
+                  <th abbr="AT. ESP">Ataque Especial</th>
+                  <th abbr="DEF. ESP">Defensa Especial</th>
+                  <th abbr="VEL">Velocidad</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tBody>
+                <tr>
+                  <tr>
+                  <th scope="row ">Blastoise</th>
+                  <td>79</td>
+                  <td>83</td>
+                  <td>100</td>
+                  <td>85</td>
+                  <td>105</td>
+                  <td>78</td>
+                  <td>530</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bulbasaur</th>
+                  <td>45</td>
+                  <td>49</td>
+                  <td>49</td>
+                  <td>65</td>
+                  <td>65</td>
+                  <td>45</td>
+                  <td>318</td>
+                </tr>
+                <tr>
+                  <th scope="row">Squirtle</th>
+                  <td>44</td>
+                  <td>48</td>
+                  <td>65</td>
+                  <td>50</td>
+                  <td>64</td>
+                  <td>43</td>
+                  <td>314</td>
+                </tr>
+                  <th scope="row">Pikachu</th>
+                  <td>35</td>
+                  <td>55</td>
+                  <td>40</td>
+                  <td>50</td>
+                  <td>50</td>
+                  <td>90</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <th scope="row">Venusaur</th>
+                  <td>80</td>
+                  <td>82</td>
+                  <td>83</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>80</td>
+                  <td>525</td>
+                </tr>
+                <tr>
+                  <th scope="row">Charmeleon</th>
+                  <td>59</td>
+                  <td>62</td>
+                  <td>63</td>
+                  <td>80</td>
+                  <td>80</td>
+                  <td>60</td>
+                  <td>405</td>
+                </tr>
+              </tBody>
+              <tFoot>
+                <tr>
+                  <th scope="row">Promedio del equipo</th>
+                  <td>57</td>
+                  <td>63</td>
+                  <td>67</td>
+                  <td>72</td>
+                  <td>77</td>
+                  <td>66</td>
+                  <td>402</td>
+                </tr>
+              </tFoot>
+            </table>
+            
+            <p>Valores base tomados de la Pokédex - la fila de totales resume el equipo completo</p>
+            
+            <button type="button" command="close" commandfor="tabla-estadisticas">Cerrar</button>
+          </dialog>
     </section>
   </main>
 
