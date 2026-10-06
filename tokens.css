@@ -69,6 +69,10 @@
                                  gráfico, no lleva texto encima) */
   --tinta-suave:    #41557A;  /* texto secundario sobre blanco: 7.5:1 */
   --linea:          #E3EAF3;  /* separadores finos dentro de tarjetas */
+  --blanco-puro:    #fff;
+  --gris-borde:     #c7d5e8;
+  --azul-hover:     #eaf1fb;
+  --rojo-hover:     #fdecea;
 
   /* --- Tipografía -------------------------------------------------------
      Fredoka (redondeada, amable) para títulos y números; Figtree (limpia,
