@@ -17,8 +17,12 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap">
       
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Módulo: usa import (datos.js, capturados.js). Necesita servidor
+       (npm start), no abrir con doble clic. -->
+  <script type="module" src="js/perfil-entrenador.js"></script>
 </head>
 
 <body>
@@ -40,7 +44,7 @@
     <nav>
       <ul>
         <li><a href="index.html">Pokédex</a></li>
-        <li><a href="./" accesskey="p" aria-current="page">Perfil de entrenador</a></li>
+        <li><a href="perfil-entrenador.html" accesskey="p" aria-current="page">Perfil de entrenador</a></li>
         <li><a href="acerca-de.html">Acerca de</a></li>
         <li><a href="configuracion.html">Configuración</a></li>
       </ul>
@@ -119,34 +123,37 @@
     <section id="perfil-opciones">
       <ul class="perfil-opciones-lista">
 
-        <li class="perfil-opcion-card">
+        <li class="perfil-opcion-card perfil-opcion-card--equipo">
           <span class="perfil-opcion-card__icono perfil-opcion-card__icono--azul" aria-hidden="true"></span>
-          <span class="perfil-opcion-card__texto">
+          <div class="perfil-opcion-card__texto">
             <span class="perfil-opcion-card__titulo">Equipo Pokémon</span>
             <span class="perfil-opcion-card__subtitulo">5 de 6 espacios ocupados</span>
-          </span>
+            <ul class="mini-sprites" aria-hidden="true"></ul>
+          </div>
           <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="equipo">
             <span class="solo-lectores">Ver Equipo Pokémon</span>
           </button>
         </li>
 
-        <li class="perfil-opcion-card">
+        <li class="perfil-opcion-card perfil-opcion-card--capturados">
           <span class="perfil-opcion-card__icono perfil-opcion-card__icono--rojo" aria-hidden="true"></span>
-          <span class="perfil-opcion-card__texto">
+          <div class="perfil-opcion-card__texto">
             <span class="perfil-opcion-card__titulo">Pokémon Capturados</span>
-            <span class="perfil-opcion-card__subtitulo">24 Pokémon en tu colección</span>
-          </span>
+            <span class="perfil-opcion-card__subtitulo">0 Pokémon en tu colección</span>
+            <ul class="mini-sprites" aria-hidden="true"></ul>
+          </div>
           <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="capturados">
             <span class="solo-lectores">Ver Pokémon Capturados</span>
           </button>
         </li>
 
-        <li class="perfil-opcion-card">
+        <li class="perfil-opcion-card perfil-opcion-card--favoritos">
           <span class="perfil-opcion-card__icono perfil-opcion-card__icono--amarillo" aria-hidden="true"></span>
-          <span class="perfil-opcion-card__texto">
+          <div class="perfil-opcion-card__texto">
             <span class="perfil-opcion-card__titulo">Favoritos</span>
             <span class="perfil-opcion-card__subtitulo">4 Pokémon marcados</span>
-          </span>
+            <ul class="mini-sprites" aria-hidden="true"></ul>
+          </div>
           <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="dialogo-favoritos">
             <span class="solo-lectores">Ver Favoritos</span>
           </button>
@@ -154,10 +161,10 @@
 
         <li class="perfil-opcion-card">
           <span class="perfil-opcion-card__icono perfil-opcion-card__icono--verde" aria-hidden="true"></span>
-          <span class="perfil-opcion-card__texto">
+          <div class="perfil-opcion-card__texto">
             <span class="perfil-opcion-card__titulo">Estadísticas</span>
             <span class="perfil-opcion-card__subtitulo">Comparativa de tu equipo</span>
-          </span>
+          </div>
           <button class="perfil-opcion-card__btn" type="button" command="show-modal" commandfor="tabla-estadisticas">
             <span class="solo-lectores">Ver Estadísticas</span>
           </button>
@@ -248,7 +255,7 @@
         </ul>
 
         <div class="team-dialog-actions">
-          <button class="add-team-pokemon-button" type="button" command="close" commandfor="equipo">Agregar desde capturados</button>
+          <button class="add-team-pokemon-button" type="button" command="show-modal" commandfor="capturados">Agregar desde capturados</button>
           <button class="close-team-dialog" type="button" command="close" commandfor="equipo">Cerrar</button>
         </div>
       </dialog>
@@ -306,8 +313,27 @@
         </ul>
 
         <p class="modal-favoritos__pie">
-          <button type="button" class="modal-favoritos__agregar">Agregar desde capturados</button>
+          <button type="button" class="modal-favoritos__agregar" command="show-modal" commandfor="capturados">Agregar desde capturados</button>
           <button type="button" class="modal-favoritos__boton-cerrar" command="close" commandfor="dialogo-favoritos">Cerrar</button>
+        </p>
+      </dialog>
+
+      <!-- Pokémon capturados: la grilla la llena js/perfil-entrenador.js con
+           lo guardado en localStorage (se captura desde la Pokédex). -->
+      <dialog id="capturados" class="modal-capturados" aria-labelledby="titulo-capturados">
+        <div class="modal-capturados__encabezado">
+          <h2 id="titulo-capturados" class="modal-capturados__titulo">Pokémon capturados</h2>
+          <button type="button" class="modal-capturados__cerrar" command="close" commandfor="capturados"><span class="solo-lectores">Cerrar capturados</span></button>
+        </div>
+
+        <p class="modal-capturados__cantidad">0 Pokémon capturados</p>
+        <p class="modal-capturados__ayuda">Seleccioná los que querés en tu equipo o marcalos como favoritos.</p>
+
+        <ul class="capturados"></ul>
+
+        <p class="modal-capturados__pie">
+          <button type="button" class="modal-capturados__favorito">Marcar favorito</button>
+          <button type="button" class="modal-capturados__equipo">Agregar al equipo</button>
         </p>
       </dialog>
 
