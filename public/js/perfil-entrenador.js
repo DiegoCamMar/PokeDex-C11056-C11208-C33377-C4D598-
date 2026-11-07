@@ -7,6 +7,7 @@
 import { buscarPorId, numeroPokedex } from './datos.js';
 import { listaCapturados } from './capturados.js';
 import { agregarFavoritos, quitarFavoritos, listaFavoritos } from './favoritos.js';
+import { agregarEquipo, quitarVariosEquipo, listaEquipo } from './equipo.js';
 
 // Convierte ids guardados en fichas ordenadas por número
 function aFichas(ids) {
@@ -67,6 +68,12 @@ function pintarResumenFavoritos() {
   pintarResumen('.seccion--favoritos', favoritos, `${favoritos.length} Pokémon marcados`);
 }
 
+// Resumen de la tarjeta "Equipo"
+function pintarResumenEquipo() {
+  const equipo = aFichas(listaEquipo());
+  pintarResumen('.seccion--equipo', equipo, `${equipo.length} de 6 espacios ocupados`);
+}
+
 // Devuelve los ids (números) de los Pokémon con la casilla marcada en el modal de Capturados
 function idsSeleccionados() {
   return [...document.querySelectorAll('#modal-capturados .captura__check:checked')]
@@ -115,6 +122,31 @@ function activarMarcarFavorito() {
   }
 }
 
+// Botón "Marcar favorito": funciona como interruptor sobre los Pokémon seleccionados.
+//  - Si todos ya son favoritos, los quita (estrella vacía).
+//  - Si no, los agrega (estrella llena).
+function activarMarcarEquipo() {
+  const boton = document.querySelector('#btn-marcar-equipo');
+  if (!boton) return;
+
+  boton.addEventListener('click', () => {
+    const ids = idsSeleccionados();
+    if (ids.length === 0) return;   // nada seleccionado: no hay nada que guardar
+
+    const cantidadAnterior = listaEquipo().length;
+    const equipo = agregarEquipo(ids);
+
+    if (equipo.length === 6 && cantidadAnterior + ids.length > 6) {
+      alert('El equipo solo puede tener 6 Pokémon');
+    }
+
+    pintarResumenEquipo();
+  });
+}
+
+
 pintarCapturados();
 pintarResumenFavoritos();
+pintarResumenEquipo();
 activarMarcarFavorito();
+activarMarcarEquipo();
