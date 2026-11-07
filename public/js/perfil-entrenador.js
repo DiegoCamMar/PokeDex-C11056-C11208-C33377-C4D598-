@@ -6,39 +6,29 @@
 // =============================================================
 import { buscarPorId, numeroPokedex } from './datos.js';
 import { listaCapturados } from './capturados.js';
-import { agregarFavoritos, quitarFavoritos, listaFavoritos } from './favoritos.js';
 
-// Convierte ids guardados en fichas ordenadas por número
-function aFichas(ids) {
-  return ids
+function pintarCapturados() {
+  // Convierte los ids guardados en fichas completas (y descarta ids raros)
+  const capturados = listaCapturados()
     .map(buscarPorId)
     .filter(Boolean)
     .sort((a, b) => a.id - b.id);
-}
-
-// Llena el resumen de una tarjeta de sección: el texto del contador y los mini-sprites
-function pintarResumen(selectorSeccion, pokemones, texto) {
-  const detalle = document.querySelector(`${selectorSeccion} .seccion__detalle`);
-  if (detalle) {
-    detalle.textContent = texto;
-  }
-
-  const mini = document.querySelector(`${selectorSeccion} .mini-sprites`);
-  if (mini) {
-    const primeros = pokemones.slice(0, 3)
-      .map((p) => `<li><img src="assets/${p.slug}.png" alt="" width="34" height="34"></li>`)
-      .join('');
-    const resto = pokemones.length > 3
-      ? `<li class="mini-sprites__mas">+${pokemones.length - 3}</li>` : '';
-    mini.innerHTML = primeros + resto;
-  }
-}
-
-function pintarCapturados() {
-  const capturados = aFichas(listaCapturados());
 
   // 1) Resumen de la tarjeta de sección: el número y los mini-sprites
-  pintarResumen('.seccion--capturados', capturados, `${capturados.length} Pokémon en tu colección`);
+  const detalle = document.querySelector('.seccion--capturados .seccion__detalle');
+  if (detalle) {
+    detalle.textContent = `${capturados.length} Pokémon en tu colección`;
+  }
+
+  const mini = document.querySelector('.seccion--capturados .mini-sprites');
+  if (mini) {
+    const primeros = capturados.slice(0, 3)
+      .map((p) => `<li><img src="assets/${p.slug}.png" alt="" width="34" height="34"></li>`)
+      .join('');
+    const resto = capturados.length > 3
+      ? `<li class="mini-sprites__mas">+${capturados.length - 3}</li>` : '';
+    mini.innerHTML = primeros + resto;
+  }
 
   // 2) Grilla dentro del diálogo "Pokémon capturados"
   const grilla = document.querySelector('#modal-capturados .capturados');
@@ -48,7 +38,7 @@ function pintarCapturados() {
     } else {
       grilla.innerHTML = capturados.map((p) => `
         <li class="captura">
-          <input type="checkbox" class="captura__check" id="cap-${p.id}" value="${p.id}" aria-label="Seleccionar a ${p.nombre}">
+          <input type="checkbox" class="captura__check" id="cap-${p.id}" aria-label="Seleccionar a ${p.nombre}">
           <label class="captura__cuerpo" for="cap-${p.id}">
             <span class="sprite-zona"><img src="assets/${p.slug}.png" alt="" width="96" height="96"></span>
             <span class="numero">${numeroPokedex(p.id)}</span>
@@ -61,60 +51,4 @@ function pintarCapturados() {
   }
 }
 
-// Resumen de la tarjeta "Favoritos"
-function pintarResumenFavoritos() {
-  const favoritos = aFichas(listaFavoritos());
-  pintarResumen('.seccion--favoritos', favoritos, `${favoritos.length} Pokémon marcados`);
-}
-
-// Devuelve los ids (números) de los Pokémon con la casilla marcada en el modal de Capturados
-function idsSeleccionados() {
-  return [...document.querySelectorAll('#modal-capturados .captura__check:checked')]
-    .map((casilla) => Number(casilla.value));
-}
-
-// true si hay selección y TODOS los seleccionados ya son favoritos
-function seleccionEsFavorita() {
-  const ids = idsSeleccionados();
-  const favoritos = listaFavoritos();
-  return ids.length > 0 && ids.every((id) => favoritos.includes(id));
-}
-
-// Pinta el botón según la selección: si ya son favoritos, cambia a estrella llena y "Quitar favorito"
-function pintarBotonFavorito(boton) {
-  const activo = seleccionEsFavorita();
-  boton.classList.toggle('boton--favorito-activo', activo);
-  const texto = boton.querySelector('.boton__texto');
-  if (texto) texto.textContent = activo ? 'Quitar favorito' : 'Marcar favorito';
-}
-
-// Botón "Marcar favorito": funciona como interruptor sobre los Pokémon seleccionados.
-//  - Si todos ya son favoritos, los quita (estrella vacía).
-//  - Si no, los agrega (estrella llena).
-function activarMarcarFavorito() {
-  const boton = document.querySelector('#btn-marcar-favorito');
-  if (!boton) return;
-  pintarBotonFavorito(boton);
-
-  boton.addEventListener('click', () => {
-    const ids = idsSeleccionados();
-    if (ids.length === 0) return;   // nada seleccionado: no hay nada que guardar
-    if (seleccionEsFavorita()) {
-      quitarFavoritos(ids);
-    } else {
-      agregarFavoritos(ids);
-    }
-    pintarBotonFavorito(boton);
-    pintarResumenFavoritos();   // refresca el contador y los mini-sprites de la tarjeta
-  });
-
-  // Al marcar o desmarcar casillas, el botón se actualiza
-  const grilla = document.querySelector('#modal-capturados .capturados');
-  if (grilla) {
-    grilla.addEventListener('change', () => pintarBotonFavorito(boton));
-  }
-}
-
 pintarCapturados();
-pintarResumenFavoritos();
-activarMarcarFavorito();
