@@ -1,0 +1,35 @@
+// http es un módulo que ya viene con Node (no se instala).
+const http = require('http');
+const fs = require('fs'); //fs = file system: leer/escribir archivos
+const path = require('path'); // path: armar las rutas de archivos de manera segura
+const { tipoDe } = require('./mime.js');
+
+// createServer recibe una función que se ejecuta en CADA petición.
+const servidor = http.createServer((peticion, respuesta) => {
+  // peticion.url es lo que viene después del dominio: "/", "/acerca", etc.
+  const soloRuta = peticion.url.split('?')[0]; // descarta la query string
+  const ruta = soloRuta === '/' ? '/index.html' : soloRuta;
+
+  // Armar la ruta real del archivo que se quiere servir.
+  const archivo = path.join(__dirname, 'public', ruta);
+  // Asincrónico: no bloquea mientras lee del disco
+  fs.readFile(archivo, (error, contenido) => {
+    if (error) {
+      // No existe -> respondemos con la página 404 (también asincrónico)
+      console.log(peticion.method, peticion.url, '-> 404');
+      fs.readFile(path.join(__dirname, 'public', '404.html'), (e, pagina404) => {
+        respuesta.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        respuesta.end(pagina404);
+      });
+      return;
+    }
+    console.log(peticion.method, peticion.url, '-> 200');
+    respuesta.writeHead(200, { 'Content-Type': tipoDe(path.extname(archivo)) });
+    respuesta.end(contenido);
+  });
+});
+
+// listen deja el servidor "escuchando" pedidos en el puerto 3000.
+servidor.listen(3000, () => {
+  console.log('Servidor en http://localhost:3000');
+});

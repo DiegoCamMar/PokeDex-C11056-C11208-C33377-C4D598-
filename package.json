@@ -1,26 +1,33 @@
 {
   "name": "ci0137-pokedex",
   "version": "1.0.0",
-  "description": "Proyecto PokéDex del curso **Desarrollo de Aplicaciones Web**, Escuela de Ciencias de la Computación e Informática, Universidad de Costa Rica. Elaborado por los estudiantes Alessandra González, Anfernhy Berrocal, Kiara Brenes y Diego Camacho.",
+  "description": "Proyecto de referencia del curso **Desarrollo de Aplicaciones Web**, Escuela de Ciencias de la Computación e Informática, Universidad de Costa Rica.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
+    "start": "node servidor.js",
+    "dev": "node --watch servidor.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-.git"
+    "url": "git+https://github.com/mariannuar/ci0137-pokedex.git"
   },
-  "keywords": [],
-  "author": "Alessandra González, Anfernhy Berrocal, Kiara Brenes y Diego Camacho",
+  "keywords": [
+    "node",
+    "http",
+    "pokedex",
+    "ci-0137"
+  ],
+  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-/issues"
+    "url": "https://github.com/mariannuar/ci0137-pokedex/issues"
   },
-  "homepage": "https://github.com/DiegoCamMar/PokeDex-C11056-C11208-C33377-C4D598-#readme",
+  "homepage": "https://github.com/mariannuar/ci0137-pokedex#readme",
   "devDependencies": {
     "sass": "^1.105.0",
     "stylelint": "^17.15.0",
