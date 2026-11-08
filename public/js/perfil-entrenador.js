@@ -14,13 +14,13 @@ function pintarCapturados() {
     .filter(Boolean)
     .sort((a, b) => a.id - b.id);
 
-  // 1) Resumen de la tarjeta de opción: el número y los mini-sprites
-  const detalle = document.querySelector('.perfil-opcion-card--capturados .perfil-opcion-card__subtitulo');
+  // 1) Resumen de la tarjeta de sección: el número y los mini-sprites
+  const detalle = document.querySelector('.seccion--capturados .seccion__detalle');
   if (detalle) {
     detalle.textContent = `${capturados.length} Pokémon en tu colección`;
   }
 
-  const mini = document.querySelector('.perfil-opcion-card--capturados .mini-sprites');
+  const mini = document.querySelector('.seccion--capturados .mini-sprites');
   if (mini) {
     const primeros = capturados.slice(0, 3)
       .map((p) => `<li><img src="assets/${p.slug}.png" alt="" width="34" height="34"></li>`)
@@ -31,22 +31,22 @@ function pintarCapturados() {
   }
 
   // 2) Grilla dentro del diálogo "Pokémon capturados"
-  const grilla = document.querySelector('#capturados .capturados');
+  const grilla = document.querySelector('#modal-capturados .capturados');
   if (grilla) {
     if (capturados.length === 0) {
-      grilla.innerHTML = '<li class="capturados__vacio">Todavía no capturaste ninguno. Entrá a la <a href="index.html">Pokédex</a> y tocá “Capturar”.</li>';
+      grilla.innerHTML = '<li class="capturados__vacio">Todavía no capturaste ninguno. Entrá a la Pokédex y tocá “Capturar”.</li>';
     } else {
       grilla.innerHTML = capturados.map((p) => `
         <li class="captura">
           <input type="checkbox" class="captura__check" id="cap-${p.id}" aria-label="Seleccionar a ${p.nombre}">
           <label class="captura__cuerpo" for="cap-${p.id}">
-            <img class="captura__imagen" src="assets/${p.slug}.png" alt="" width="96" height="96">
-            <span class="captura__numero">${numeroPokedex(p.id)}</span>
+            <span class="sprite-zona"><img src="assets/${p.slug}.png" alt="" width="96" height="96"></span>
+            <span class="numero">${numeroPokedex(p.id)}</span>
             <span class="captura__nombre">${p.nombre}</span>
           </label>
         </li>`).join('');
     }
-    const nota = document.querySelector('#capturados .modal-capturados__cantidad');
+    const nota = document.querySelector('#modal-capturados .modal__nota');
     if (nota) nota.textContent = `${capturados.length} Pokémon capturados`;
   }
 }
