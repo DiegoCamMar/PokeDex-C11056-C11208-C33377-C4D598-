@@ -68,6 +68,40 @@ function pintarResumenFavoritos() {
   pintarResumen('.seccion--favoritos', favoritos, `${favoritos.length} Pokémon marcados`);
 }
 
+function pintarEquipo() {
+  const equipo = aFichas(listaEquipo());
+
+  const grilla = document.querySelector('#modal-equipo .equipo');
+  const subtitulo = document.querySelector('#modal-equipo .modal__subtitulo');
+
+  if (subtitulo) {
+    subtitulo.textContent = `${equipo.length} de 6 espacios ocupados`;
+  }
+
+  if (grilla) {
+    if (equipo.length === 0) {
+      grilla.innerHTML = '<li class="equipo__vacio">Todavía no agregaste ningún Pokémon a tu equipo.</li>';
+    } else {
+      grilla.innerHTML = equipo.map((p) => `
+        <li class="equipo__ficha">
+          <span class="numero">${numeroPokedex(p.id)}</span>
+          <div class="sprite-zona">
+            <img src="assets/${p.slug}.png" alt="" width="96" height="96">
+          </div>
+          <h3>${p.nombre}</h3>
+          <span class="tipos">${p.tipos.map((tipo) => `<span class="tipo tipo--${tipo.toLowerCase()}">${tipo}</span>`).join('')}</span>
+          <button type="button" class="boton boton--borde-rojo boton--chico equipoquitar" data-id="${p.id}">Quitar</button>
+        </li>`).join('');
+    }
+  }
+}
+
+// Resumen de la tarjeta "Equipo"
+function pintarResumenEquipo() {
+  const equipo = aFichas(listaEquipo());
+  pintarResumen('.seccion--equipo', equipo, `${equipo.length} de 6 espacios ocupados`);
+}
+
 function nombreTipo(tipo) {
   if (tipo === 'electrico') return 'Eléctrico';
   return tipo.charAt(0).toUpperCase() + tipo.slice(1);
@@ -176,7 +210,48 @@ function activarMarcarFavorito() {
   }
 }
 
+// Botón "Agregar al equipo": suma los seleccionados al equipo (máximo 6).
+function activarMarcarEquipo() {
+  const boton = document.querySelector('#btn-marcar-equipo');
+  if (!boton) return;
+
+  boton.addEventListener('click', () => {
+    const ids = idsSeleccionados();
+    if (ids.length === 0) return;   // nada seleccionado: no hay nada que guardar
+
+    const equipoAnterior = listaEquipo();
+    const cantidadAnterior = equipoAnterior.length;
+    const nuevosSeleccionados = ids.filter((id) => !equipoAnterior.includes(id));
+    const equipo = agregarEquipo(ids);
+
+    if (equipo.length === 6 && cantidadAnterior + nuevosSeleccionados.length > 6) {
+      alert('El equipo solo puede tener 6 Pokémon');
+    }
+
+    pintarEquipo();
+    pintarResumenEquipo();
+  });
+}
+
+function activarQuitarEquipo() {
+  const grilla = document.querySelector('#modal-equipo .equipo');
+  if (!grilla) return;
+
+  grilla.addEventListener('click', (evento) => {
+    const boton = evento.target.closest('.equipoquitar');
+    if (!boton) return;
+
+    quitarVariosEquipo([Number(boton.dataset.id)]);
+    pintarEquipo();
+    pintarResumenEquipo();
+  });
+}
+
 pintarCapturados();
 pintarFavoritos();
+pintarEquipo();
+pintarResumenEquipo();
 activarMarcarFavorito();
 activarQuitarFavorito();
+activarMarcarEquipo();
+activarQuitarEquipo();

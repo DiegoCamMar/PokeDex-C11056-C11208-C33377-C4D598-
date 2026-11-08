@@ -38,12 +38,18 @@
 .icono--lleno  { fill: currentColor; }
 
 /* Estrella de favorito: relleno dorado con contorno navy (el dorado solo,
-   sobre fondo claro, no tendría contraste). */
+   sobre fondo claro, no tendría contraste).
+   Se usa en el diálogo de Favoritos y, en el botón "Marcar favorito"
+   en el diálogo de Capturados, solo mientras está activo. */
+.icono--fav,
+.boton--favorito-activo .icono {
+  fill: var(--amarillo-borde);
+  stroke: var(--navy);
+}
+
 .icono--fav {
   width: 1.6rem;
   height: 1.6rem;
-  fill: var(--amarillo-borde);
-  stroke: var(--navy);
   stroke-width: 1.8;
 }
 
