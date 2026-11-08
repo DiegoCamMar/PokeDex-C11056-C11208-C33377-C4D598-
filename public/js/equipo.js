@@ -20,8 +20,8 @@ export function estaEnEquipo(id) {
   return leer().has(id);
 }
 
-// Agrega varios ids a favoritos (los que ya estaban no se repiten).
-// Devuelve la lista completa de favoritos al finalizar.
+// Agrega varios ids a equipo (los que ya estaban no se repiten).
+// Devuelve la lista completa del equipo al finalizar.
 export function agregarEquipo(ids) {
   const equipo = leer();
   ids.forEach((id) => {
@@ -34,8 +34,8 @@ export function agregarEquipo(ids) {
   return [...equipo];
 }
 
-// Quita un id de favoritos. Devuelve la lista completa que queda.
-// Usar en el diálogo de Favoritos que tiene un botón de "Quitar" para cada Pokémon.
+// Quita un id de equipo. Devuelve la lista completa que queda.
+// Usar en el diálogo de Equipo que tiene un botón de "Quitar" para cada Pokémon.
 export function quitarEquipo(id) {
   const equipo = leer();
   equipo.delete(id);
@@ -43,8 +43,8 @@ export function quitarEquipo(id) {
   return [...equipo];
 }
 
-// Quita varios ids de favoritos. Devuelve la lista completa que queda.
-// Usar en el diálogo de Capturados con el botón "Quitar Favorito", 
+// Quita varios ids de equipo. Devuelve la lista completa que queda.
+// Usar en el diálogo de Capturados con el botón "Quitar", 
 // que elimina todos los pokémon seleccionados.
 export function quitarVariosEquipo(ids) {
   const equipo = leer();
