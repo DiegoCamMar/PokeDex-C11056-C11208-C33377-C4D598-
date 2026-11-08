@@ -6,8 +6,7 @@
 // =============================================================
 import { buscarPorId, numeroPokedex } from './datos.js';
 import { listaCapturados } from './capturados.js';
-import { agregarFavoritos, quitarFavoritos, listaFavoritos } from './favoritos.js';
-import { agregarEquipo, quitarVariosEquipo, listaEquipo } from './equipo.js';
+import { agregarFavoritos, quitarFavorito, quitarFavoritos, listaFavoritos } from './favoritos.js';
 
 // Convierte ids guardados en fichas ordenadas por número
 function aFichas(ids) {
@@ -68,38 +67,64 @@ function pintarResumenFavoritos() {
   pintarResumen('.seccion--favoritos', favoritos, `${favoritos.length} Pokémon marcados`);
 }
 
-function pintarEquipo() {
-  const equipo = aFichas(listaEquipo());
-
-  const grilla = document.querySelector('#modal-equipo .equipo');
-  const subtitulo = document.querySelector('#modal-equipo .modal__subtitulo');
-
-  if (subtitulo) {
-    subtitulo.textContent = `${equipo.length} de 6 espacios ocupados`;
-  }
-
-  if (grilla) {
-    if (equipo.length === 0) {
-      grilla.innerHTML = '<li class="equipo__vacio">Todavía no agregaste ningún Pokémon a tu equipo.</li>';
-    } else {
-      grilla.innerHTML = equipo.map((p) => `
-        <li class="equipo__ficha">
-          <span class="numero">${numeroPokedex(p.id)}</span>
-          <div class="sprite-zona">
-            <img src="assets/${p.slug}.png" alt="" width="96" height="96">
-          </div>
-          <h3>${p.nombre}</h3>
-          <span class="tipos">${p.tipos.map((tipo) => `<span class="tipo tipo--${tipo.toLowerCase()}">${tipo}</span>`).join('')}</span>
-          <button type="button" class="boton boton--borde-rojo boton--chico equipoquitar" data-id="${p.id}">Quitar</button>
-        </li>`).join('');
-    }
-  }
+function nombreTipo(tipo) {
+  if (tipo === 'electrico') return 'Eléctrico';
+  return tipo.charAt(0).toUpperCase() + tipo.slice(1);
 }
 
-// Resumen de la tarjeta "Equipo"
-function pintarResumenEquipo() {
-  const equipo = aFichas(listaEquipo());
-  pintarResumen('.seccion--equipo', equipo, `${equipo.length} de 6 espacios ocupados`);
+// Lista dentro del diálogo "Favoritos"
+function pintarFavoritos() {
+  const favoritos = aFichas(listaFavoritos());
+  pintarResumenFavoritos();
+
+  const subtitulo = document.querySelector('#modal-favoritos .modal__subtitulo');
+  if (subtitulo) subtitulo.textContent = `${favoritos.length} Pokémon marcados como favoritos`;
+
+  const lista = document.querySelector('#modal-favoritos .favoritos');
+  if (!lista) return;
+
+  if (favoritos.length === 0) {
+    lista.innerHTML = '<li class="favoritos__vacio">Todavía no tenés favoritos. Abrí tus capturados y tocá “Marcar favorito”.</li>';
+    return;
+  }
+
+  lista.innerHTML = favoritos.map((p) => {
+    const tipos = p.tipos
+      .map((t) => `<span class="tipo tipo--${t}">${nombreTipo(t)}</span>`)
+      .join('');
+
+    return `
+      <li class="favorito">
+        <span class="favorito__estrella"><svg class="icono icono--fav" aria-hidden="true" width="24" height="24"><use href="#i-star"/></svg></span>
+        <div class="sprite-zona sprite-zona--chica"><img src="assets/${p.slug}.png" alt="" width="64" height="64"></div>
+        <div class="favorito__datos">
+          <h3>${p.nombre} <span class="numero">${numeroPokedex(p.id)}</span></h3>
+          <span class="tipos">${tipos}</span>
+        </div>
+        <div class="favorito__acciones">
+          <a class="boton boton--borde-azul boton--chico" href="detalle.html?id=${p.id}">Ver detalle<span class="solo-lectores"> de ${p.nombre}</span> <svg class="icono " aria-hidden="true" width="24" height="24"><use href="#i-arrow"/></svg></a>
+          <button type="button" class="boton boton--borde-rojo boton--chico favorito__quitar" data-id="${p.id}">Quitar de favoritos<span class="solo-lectores">: ${p.nombre}</span></button>
+        </div>
+      </li>`;
+  }).join('');
+}
+
+// Botones "Quitar de favoritos" del diálogo. Como la lista se vuelve a pintar,
+// el evento se pone una sola vez en la lista y no en cada botón.
+function activarQuitarFavorito() {
+  const lista = document.querySelector('#modal-favoritos .favoritos');
+  if (!lista) return;
+
+  lista.addEventListener('click', (evento) => {
+    const boton = evento.target.closest('.favorito__quitar');
+    if (!boton) return;
+
+    quitarFavorito(Number(boton.dataset.id));
+    pintarFavoritos();
+
+    const botonMarcar = document.querySelector('#btn-marcar-favorito');
+    if (botonMarcar) pintarBotonFavorito(botonMarcar);
+  });
 }
 
 // Devuelve los ids (números) de los Pokémon con la casilla marcada en el modal de Capturados
@@ -140,7 +165,7 @@ function activarMarcarFavorito() {
       agregarFavoritos(ids);
     }
     pintarBotonFavorito(boton);
-    pintarResumenFavoritos();   // refresca el contador y los mini-sprites de la tarjeta
+    pintarFavoritos();   // refresca el contador, los mini-sprites y el diálogo de favoritos
   });
 
   // Al marcar o desmarcar casillas, el botón se actualiza
@@ -150,47 +175,7 @@ function activarMarcarFavorito() {
   }
 }
 
-// Botón "Agregar desde capturados": funciona como interruptor sobre los Pokémon seleccionados.
-function activarMarcarEquipo() {
-  const boton = document.querySelector('#btn-marcar-equipo');
-  if (!boton) return;
-
-  boton.addEventListener('click', () => {
-    const ids = idsSeleccionados();
-    if (ids.length === 0) return;   // nada seleccionado: no hay nada que guardar
-
-    const equipoAnterior = listaEquipo();
-    const cantidadAnterior = equipoAnterior.length;
-    const nuevosSeleccionados = ids.filter((id) => !equipoAnterior.includes(id));
-    const equipo = agregarEquipo(ids);
-
-    if (equipo.length === 6 && cantidadAnterior + nuevosSeleccionados.length > 6) {
-      alert('El equipo solo puede tener 6 Pokémon');
-    }
-
-    pintarEquipo();
-    pintarResumenEquipo();
-  });
-}
-
-function activarQuitarEquipo() {
-  const grilla = document.querySelector('#modal-equipo .equipo');
-  if (!grilla) return;
-
-  grilla.addEventListener('click', (evento) => {
-    const boton = evento.target.closest('.equipoquitar');
-    if (!boton) return;
-
-    quitarVariosEquipo([Number(boton.dataset.id)]);
-    pintarEquipo();
-    pintarResumenEquipo();
-  });
-}
-
 pintarCapturados();
-pintarResumenFavoritos();
-pintarEquipo();
-pintarResumenEquipo();
+pintarFavoritos();
 activarMarcarFavorito();
-activarMarcarEquipo();
-activarQuitarEquipo();
+activarQuitarFavorito();
