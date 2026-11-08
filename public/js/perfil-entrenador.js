@@ -6,6 +6,7 @@
 // =============================================================
 import { buscarPorId, numeroPokedex } from './datos.js';
 import { listaCapturados } from './capturados.js';
+import { agregarEquipo, quitarVariosEquipo, listaEquipo } from './equipo.js';
 import { agregarFavoritos, quitarFavorito, quitarFavoritos, listaFavoritos } from './favoritos.js';
 
 // Convierte ids guardados en fichas ordenadas por número
